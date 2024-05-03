@@ -35,7 +35,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <input id="act_age" type="text" placeholder="Edad actor"/>
+                                <input id="act_age" type="number" placeholder="Edad actor"/>
                             </td>
                         </tr>
                         <tr>
@@ -72,31 +72,36 @@
                         </tr>
                         <tr>
                             <td>
-                                <label for="locate_date">Ubicacion</label>
+                                <label for="creation_date">Fecha de creacion</label>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <input id="locate_date" type="date"/>
+                                <input id="creation_date" type="date"/>
                             </td>
                         </tr>
                     </table>
                 </div>
             </div>
             <div>
-                <label>Productora</label>
-                <input type="">
+                <label for="producer">Productora</label>
+                <input id="producer" type="">
             </div>
         </form>
         <div>
             <button class="btn btn-dark" onclick="allowForm()">Nuevo heroe</button>
             <button class="btn btn-primary" onclick="saveHero()">Guardar heroe</button>
             <button class="btn btn-secondary">Modificar heroe</button>
-            <button class="btn btn-info">Ver heroes</button>
+            <button class="btn btn-info" onclick="fetchHeros()">Ver heroes</button>
             <button class="btn btn-danger">Cancelar</button>
-
+            
         </div>
     </div>
+    <div class="crud" id="show">
+
+    </div>
+    <button onclick="showHero()" id="myBtn" type="submit"></button>
+
 </body>
 <script src="js/script.js"></script>
 </html>
