@@ -1,5 +1,4 @@
 let tam = 0
-
 function fetchHeros(){
     let xhr = new XMLHttpRequest();
     let url = "https://6634e1409bb0df2359a30e61.mockapi.io/superhero/hero"
@@ -21,15 +20,6 @@ function fetchHeros(){
     }
     xhr.send();
 }
-
-const search = document.getElementById("getHero");
-search.addEventListener("keypress", function(event) {
-  if (event.key === "Enter") {
-    event.preventDefault();
-    document.getElementById("myBtn").click();
-  }
-});
-
 function showHero(){
     let xhr = new XMLHttpRequest();
     let id = document.getElementById("getHero").value
@@ -71,7 +61,6 @@ function showHero(){
     }
     xhr.send();
 }
-
 function allowForm(){
     
 }
@@ -80,8 +69,8 @@ function saveHero(){
 
     let xhr = new XMLHttpRequest();
     let url = `https://6634e1409bb0df2359a30e61.mockapi.io/superhero/hero`
-    xhr.open("POST",url)
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.open("POST",url,true)
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
     let charName = document.getElementById("char_name").value
     let actAge = document.getElementById("act_age").value
@@ -91,17 +80,19 @@ function saveHero(){
     let creationDate = document.getElementById("creation_date").value
     let producer = document.getElementById("producer").value
     
-    const newHero = JSON.stringify({
-        "name":charName,
-        "actor": actName,
-        "location": location,
-        "poster": poster,
-        "age":actAge,
-        "creation_date":creationDate,
-        "suits":[],
-        "producer":producer,
-        "id": tam,
+    const newHeroIs = JSON.stringify({
+        name: charName,
+        actor: actName,
+        location: location,
+        poster:poster,
+        age: actAge,
+        creation_date: creationDate,
+        producer: producer,
     });
+    let newHero = newHeroIs.replace("{"," ")
+    newHero = newHeroIs.replace("}"," ")
+    console.log(newHero)
+    
     xhr.onload = () =>{
         if(xhr.readyState === 4 && xhr.status ===201){
             console.log(JSON.parse(xhr.responseText));
@@ -109,5 +100,5 @@ function saveHero(){
             console.log("Error :(")
         }
     };
-    xhr.send(newHero)
+    xhr.send(body)
 }
