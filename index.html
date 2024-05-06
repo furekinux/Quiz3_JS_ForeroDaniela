@@ -11,9 +11,6 @@
 <body>
     <div class="container">
         <div class="row justify-content-md-center mt-3">
-            <div class="col">
-
-            </div>
             <div class="col-8">
                 <div class="card">
                     <div class="card-header">
@@ -73,6 +70,7 @@
                                         <div class="mb-3">
                                             <label for="producer">Productora</label>
                                             <select name="producer" id="producer" class="form-select">
+                                                <option value="None"> </option>
                                                 <option value="Marvel">Marvel</option>
                                                 <option value="DC">DC</option>
                                             </select>
@@ -89,18 +87,34 @@
                                             <div class="card-body text-primary">
                                                 <h5 class="card-title">Traje del personaje</h5>
                                                 <p>En esta sección podrás registrar el nombre de los traje usados por el autor en cada una de las películas.</p>
-                                                <a class="btn btn-warning" href="#" id="addSuite">+</a>
+                                                <a class="btn btn-warning" href="#" id="addSuite" onclick="newSuit()">+</a>
                                                 <div class="" style="width: 100%;">
-                                                    <div class="container body-detail"></div>
+                                                    <div class="container body-detail" id="newInputs">
+                                                        
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </form>
-                            <button type="button" class="btn btn-dark">Nuevo Heroe</button>
-                            <button type="button" class="btn btn-primary">Guardar Heroe</button>
-                            <button type="button" class="btn btn-danger">Cancelar</button>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <button onclick="newAllow()" type="button" class="btn btn-dark">Nuevo Heroe</button>
+                                        <button onclick="newHero()" type="button" class="btn btn-primary">Guardar Heroe</button>
+                                        <button onclick="cancel()" type="button" class="btn btn-danger">Cancelar</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="mb-3">
+                                        <button onclick="showHeros()" type="button" class="btn btn-secondary">Ver heroes</button>
+                                        <button type="button" class="btn btn-danger">Borrar heroe</button>
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>
                     </div>
@@ -108,100 +122,7 @@
             </div>
         </div>
     </div>
-    <p class="titlecont">Mis Heroes</p>
-    <div class="crud">
         
-
-        <h2>Gestión de Heroes</h2>
-        <form>
-            <div class="form_cont">
-                <div class="grid_cont">
-                    <table>
-                        <tr>
-                            <td>
-                                <label for="char_name">Nombre Personaje</label>
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td>
-                                <input id="char_name" type="text" placeholder="Nombre personaje"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="act_age">Edad Actor</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input id="act_age" type="number" placeholder="Edad actor"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="poster">Poster</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input id="poster" type="text" placeholder="Poster"/>
-                            </td>
-                        </tr>
-                    </table>
-                    <table>
-                        <tr>
-                            <td>
-                                <label for="act_name">Nombre Actor</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input id="act_name" type="text" placeholder="Nombre actor"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="location">Ubicación</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input id="location" type="text" placeholder="Ubicacion"/>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <label for="creation_date">Fecha de creacion</label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input id="creation_date" type="date"/>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            <div>
-                <label for="producer">Productora</label>
-                <input id="producer" type="">
-            </div>
-        </form>
-        <div>
-            <button class="btn btn-dark" onclick="allowForm()">Nuevo heroe</button>
-            <button class="btn btn-primary" onclick="saveHero()">Guardar heroe</button>
-            <button class="btn btn-secondary">Modificar heroe</button>
-            <button class="btn btn-info" onclick="fetchHeros()">Ver heroes</button>
-            <button class="btn btn-danger">Cancelar</button>
-            
-        </div>
-    </div>
-    <div class="crud" id="show">
-
-    </div>
-    <button onclick="showHero()" id="myBtn" type="submit"></button>
-
 </body>
 <script src="js/script.js"></script>
 </html>
