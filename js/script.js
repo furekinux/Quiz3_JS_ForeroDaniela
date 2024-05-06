@@ -1,104 +1,65 @@
-let tam = 0
-function fetchHeros(){
-    let xhr = new XMLHttpRequest();
-    let url = "https://6634e1409bb0df2359a30e61.mockapi.io/superhero/hero"
-    xhr.open("GET",url,true)
-    xhr.onreadystatechange = function(){
-        if(this.readyState === 4 && this.status === 200){
-            let response = JSON.parse(this.responseText);
-            console.log(response);
-            tam = response.length
-            console.log(tam);
-
-            let showUp = document.getElementById("show")
-            showUp.innerHTML= `
-            <input id="getHero" type="number" placeholder="ingrese la id o nombre">
-            `
-        } else if(this.readyState == 4){
-            console.log("Error :(",this.statusText);
-        }
+let heros=[
+    {
+        id:1,
+        name:"Batman",
+        actor:":bat:",
+        age:99,
+        producer:"DC",
+        poster: "",
+        location:"Ciudad",
+        date: "",
+        suits:["No se*1","No se*2"]
     }
-    xhr.send();
-}
-function showHero(){
-    let xhr = new XMLHttpRequest();
-    let id = document.getElementById("getHero").value
-    console.log(id)
-    let url = `https://6634e1409bb0df2359a30e61.mockapi.io/superhero/hero/${id}`
-    xhr.open("GET",url,true)
-    xhr.onreadystatechange = function(){
-        if(this.readyState === 4 && this.status === 200){
-            let response = JSON.parse(this.responseText);
-            console.log(response);
-            let trajes=response.suits
-            console.log(trajes);
-
-            let showUp = document.getElementById("show")
-            showUp.innerHTML= `
-            <p>Nombre de Superheroe: ${response.name}</p>
-            <p>Nombre del Actor: ${response.actor}</p>
-            <p>Edad: ${response.age}</p>
-            <p>Ciudad de origen: ${response.location}</p>
-            <p>Fecha de creación: ${response.creation_date}</p>
-            <p>Poster: ${response.poster}</p>
-            <p>Productora: ${response.producer}</p>
-
-            <p>Trajes</p>
-            `
-            trajes.forEach(suit => {
-                if(response === "error"){
-                    cardImg.innerHTML=`<p>Error</p>`
-                } else{
-                    let newsuit = document.createElement("li");
-                    newsuit.innerText = suit
-
-                    showUp.appendChild(newsuit);
-                }
-            });
-        } else if(this.readyState == 4){
-            console.log("Error :(",this.statusText);
-        }
+]
+let tam=heros.length
+console.log(tam)
+function newHero(){
+    
+    let newheroIs={
+        id:tam+1,
+        name:document.getElementById("char_name").value,
+        actor:document.getElementById("act_name").value,
+        age:document.getElementById("act_age").value,
+        producer:document.getElementById("producer").value,
+        poster: document.getElementById("poster").value,
+        location:document.getElementById("location").value,
+        date: document.getElementById("date").value,
+        suits:["No se*1","No se*2"]
     }
-    xhr.send();
+    tam=tam+1
+    heros.push(newheroIs)
+    console.log(newheroIs)
+    console.log(heros)
 }
-function allowForm(){
-    
+
+function newSuit(){
+    suitSpace = getElementById("newInputs")
+    forSuit= `<input type="text">`
 }
-function saveHero(){
-    tam= tam+1
-
-    let xhr = new XMLHttpRequest();
-    let url = `https://6634e1409bb0df2359a30e61.mockapi.io/superhero/hero`
-    xhr.open("POST",url,true)
-    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-
-    let charName = document.getElementById("char_name").value
-    let actAge = document.getElementById("act_age").value
-    let poster = document.getElementById("poster").value
-    let actName = document.getElementById("act_name").value
-    let location = document.getElementById("location").value
-    let creationDate = document.getElementById("creation_date").value
-    let producer = document.getElementById("producer").value
-    
-    const newHeroIs = JSON.stringify({
-        name: charName,
-        actor: actName,
-        location: location,
-        poster:poster,
-        age: actAge,
-        creation_date: creationDate,
-        producer: producer,
-    });
-    let newHero = newHeroIs.replace("{"," ")
-    newHero = newHeroIs.replace("}"," ")
-    console.log(newHero)
-    
-    xhr.onload = () =>{
-        if(xhr.readyState === 4 && xhr.status ===201){
-            console.log(JSON.parse(xhr.responseText));
-        } else {
-            console.log("Error :(")
-        }
-    };
-    xhr.send(body)
+function cancel(){
+    let hola = document.getElementById("grpSuites")
+    hola.innerHTML=""
+}
+function newAllow(){
+    let hola = document.getElementById("grpSuites")
+    if(hola.innerText===""){
+        hola.innerHTML=`
+            <div class="col">
+                <div class="card border-primary mb-3" style="max-width: 100%;">
+                    <div class="card-header">
+                        Registro de Trajes
+                    </div>
+                    <div class="card-body text-primary">
+                        <h5 class="card-title">Traje del personaje</h5>
+                        <p>En esta sección podrás registrar el nombre de los traje usados por el autor en cada una de las películas.</p>
+                        <a class="btn btn-warning" href="#" id="addSuite" onclick="newSuit()">+</a>
+                        <div class="" style="width: 100%;">
+                            <div class="container body-detail" id="newInputs">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>`
+    }
 }
