@@ -176,13 +176,16 @@ function displayHeros(){
             </div>
         </div>
         <div>
-            <button class="btn btn-danger mt-3 mb-3" onclick="delShow()">Cancelar</button>
         </div>
         `
         aDiv.innerHTML = showHero
         space.appendChild(aDiv)
 
     });
+    anotherDiv = document.createElement("div")
+    let buttonNew = `<button class="btn btn-danger mt-3 mb-3" onclick="delShow()">Cancelar Visualizar</button>`
+    anotherDiv.innerHTML = buttonNew
+    space.appendChild(anotherDiv)
 
 }
 function delShow(){
