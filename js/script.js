@@ -2,15 +2,17 @@ let heros=[
     {
         id:1,
         name:"Batman",
-        actor:":bat:",
+        actor:"Ser humano",
         age:99,
         producer:"DC",
-        poster: "",
+        poster: "https://i.pinimg.com/474x/86/33/3e/86333ee456979dfad57774cd516824b5.jpg",
         location:"Ciudad",
         date: "",
         suits:["No se*1","No se*2"]
     }
 ]
+let arraysitoSuit = []
+
 let contar=0
 let fields = document.getElementById("frmDataHero").getElementsByTagName('*');
 for(var i = 0; i < fields.length; i++)
@@ -21,7 +23,9 @@ let tam=heros.length
 console.log(tam)
 
 function newHero(){
-    
+    let suitsIs = document.getElementById("newInputs").getElementsByTagName("div")
+    arraysitoSuit.push(suitsIs)
+    console.log(arraysitoSuit)
     let newheroIs={
         id:tam+1,
         name:document.getElementById("char_name").value,
@@ -52,13 +56,12 @@ function newSuit(){
 
     let wrapper2 = document.createElement("div");
     wrapper2.setAttribute("id",`suitID${contar}`);
-    wrapper2.classList.add("col-sm-7");
-    wrapper2.setAttribute("style","width: 100%");
+    wrapper2.classList.add("col-sm-11");
 
 
     let wrapper3 = document.createElement("div");
     wrapper3.setAttribute("id",`suitID${contar}`);
-    wrapper3.classList.add("col-sm");
+    wrapper3.classList.add("col");
 
     let newinput = document.createElement("input");
     newinput.setAttribute("type","text");
@@ -137,4 +140,52 @@ function newAllow(){
 }
 
 
+function displayHeros(){
+    let space = document.getElementById("displayHeros")
+    heros.forEach(hero => {
+        let aDiv = document.createElement("div")
+        aDiv.classList.add("card")
+        aDiv.classList.add("mt-3")
+        aDiv.setAttribute("style","width:100%")
 
+        let showHero = `
+        <div class="card-header">
+            Ver heroes
+        </div>
+            <div class="card-body">
+                <h5>${hero.name}</h5>
+            <div class="container">
+                <table>
+                    <tr>
+                        <td class="pt-3">Nombre del Actor:</td>
+                        <td class="px-3 pt-3">${hero.actor}</td>
+                    </tr>
+                    <tr>
+                        <td class="pt-3">Edad del Actor:</td>
+                        <td class="px-3 pt-3">${hero.age}</td>
+                    </tr>
+                    <tr>
+                        <td class="pt-3">Ciudad de origen:</td>
+                        <td class="px-3 pt-3">${hero.location}</td>
+                    </tr>
+                    <tr>
+                        <td class="pt-3">Poster:</td>
+                        <td class="px-3 pt-3"><img style="width:60%" src="${hero.poster}"/></td>
+                    </tr>
+                </table
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-danger mt-3 mb-3" onclick="delShow()">Cancelar</button>
+        </div>
+        `
+        aDiv.innerHTML = showHero
+        space.appendChild(aDiv)
+
+    });
+
+}
+function delShow(){
+    let space = document.getElementById("displayHeros")
+    space.innerHTML = ""
+}
